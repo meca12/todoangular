@@ -1,0 +1,12 @@
+.messageError{
+
+    background-color: red;
+    color:white; 
+    opacity: 0; 
+    transition: all linear .10s;
+}
+
+
+.messageError.show{
+    opacity: 1;
+}

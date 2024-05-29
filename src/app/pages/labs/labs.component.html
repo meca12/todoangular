@@ -1,0 +1,149 @@
+<h1>{{title}}</h1>
+<h2>NgFor</h2>
+<ul>
+    <li *ngFor="let taks of joBworks">
+        {{taks}}
+    </li>
+
+</ul>
+<hr/>
+<h2>Data biding</h2>
+<h2>{{"Hola".repeat(3)}}</h2>
+<p> la suma de 3 + 3  es{{ 3 + 3}}</p>
+<p>Hola soy  <b>{{name}}</b> y mi edad es <b>{{edad}}</b></p>
+<hr/>
+<h2>Estados y objetos</h2>
+<img [src]="img" style="width: 230px;">
+<h3>Registro nacional de mascotas</h3>
+<ul>
+    <li><b>Nombre</b>: {{mascota.nombre}}</li>
+    <li><b>Tipo</b>: {{mascota.animal}}</li>
+    <li><b>Raza</b> : {{mascota.raza}}</li>
+    <li><b>Edad</b> : {{mascota.edad}}</li>
+    <li><b>Hermanos</b>: {{mascota.nombreHermana}}</li>
+
+</ul>
+<input  type="text" [value]="name">
+<button [disabled]="state">Click me</button>
+
+<hr/>
+ <h3>Eventos</h3>
+<div>
+<button (click)="clickHandler($event)">Click Me !</button>
+<button (dblclick)="clickHandler($event)"> double Click !</button>
+<p>Change</p>
+<input type="text" [value]="mascota.nombre" (change)="changeHandler($event)">
+<p>Cambios en input con change</p>
+<p>(Change)</p>
+<input type="text" [value]="mascota.raza" (change)="keydownchangeHandler($event)">
+
+<p>(keydown)</p>
+
+<input type="text" [value]="mascota.hermanos" (keydown)="keydownHandler($event)">
+<p>(Keydown)</p>
+<input type="text" [value]="mascota.edad" (keydown.shift.t)="clickHandler($event)">
+
+</div>
+
+
+<div>
+    <h2>Signals</h2>
+<p>Hola mi nombre es {{nombres()}}</p>
+
+
+<input type="text" [value]="nombres()" (change)="changeSignal($event)">
+
+</div>
+
+<hr/>
+
+<h2>Estructuras de control</h2>
+
+<p>Ngfor lo  vamos a volver  un sginal </p>
+
+
+ <p>Total de  colores {{colores().length}}</p>
+<ul>
+    <li *ngFor="let color of colores(); index as i">
+     {{i}}-{{color}}
+    </li>
+  
+
+</ul>
+
+
+<h2>Objetos con signal</h2>
+<ul>
+    <li><b>Nombre</b>: {{persona().nombre}}</li>
+    <li><b>Edad</b>: {{persona().edad}}</li>
+    <li><b>Carrera</b> : {{persona().carrera}}</li>
+    <li><b>Ciudad</b> : {{persona().ciudad}}</li>
+ 
+
+</ul>
+
+<hr/>
+
+<div *ngIf="1 !== 1">
+ <p>Mi contenido</p>
+</div>
+
+<input type="number" [value]="persona().edad" (change)="changeAge($event)">
+<div *ngIf="persona().nombre === 'pepito' && persona().edad > 18 ; else miBloque"  >
+ <p>Hola soy {{persona().nombre}}  y  tengo  {{persona().edad}} años </p>
+</div>
+
+<ng-template #miBloque>
+  <p>No soy pedro</p>
+</ng-template>
+
+<hr/>
+
+
+<div [ngSwitch]="persona().nombre">
+<p *ngSwitchCase="'nicolás'">Soy Nicolás</p>
+<p *ngSwitchCase="'Pedro'">Soy Pedro</p>
+<p *ngSwitchCase="'Anna'">Soy Anna</p>
+<p *ngSwitchCase="'Teresa'">Soy Teresa</p>
+<p *ngSwitchDefault> Soy {{persona().nombre}}</p>
+
+</div>
+
+<hr/>
+
+<h2>Formulario</h2>
+ <label id="color">Color</label>
+<input type="color" [formControl]="colorControl">
+<label id="height">Height</label>
+<input type="number"[formControl]="heightControl" >
+<label id="width">Widht</label>
+<input type="number" [formControl]="widthControl">
+<div class="my-3 mx-3"style="border-color: black,solid,3px;"  [ngStyle]="{'background-color':colorControl.value}" [style.width.px]="widthControl.value" [style.height.px]="heightControl.value">
+
+
+ <h2 class="text-center my-3 mx-3" style="color:gold">{{colorControl.value}}</h2>
+
+
+</div>
+
+<hr/>
+<div>
+    <h4>Uso de estilos en angular</h4>
+    <svg>
+        <g>
+          <rect x="0" y="0"  height="100" width="100" [attr.fill]="colorControl.value"/>
+        </g>
+    </svg>
+</div>
+
+
+<hr>
+<h3>Manejo de clases en angular</h3>
+<input type="text" [formControl]="mainCtrl">
+
+<br>
+
+<span class="messageError" [class.show]="mainCtrl.invalid &&  mainCtrl.touched">Nombre: invalido</span>
+
+<input type="text">
+
